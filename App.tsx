@@ -15,7 +15,8 @@ import {
   Layout,
   Smartphone,
   Square,
-  PenTool
+  PenTool,
+  Key
 } from 'lucide-react';
 
 const THEMES: ThemeConfig[] = [
@@ -295,7 +296,37 @@ export default function App() {
       .catch(err => console.error('Failed to load fonts:', err));
   }, []);
 
+  // Check for API Key on mount
+  useEffect(() => {
+    const checkApiKey = async () => {
+      if (window.aistudio?.hasSelectedApiKey) {
+        const hasKey = await window.aistudio.hasSelectedApiKey();
+        if (!hasKey) {
+          setAppState(AppState.NO_API_KEY);
+        }
+      }
+    };
+    checkApiKey();
+  }, []);
+
+  const handleSelectKey = async () => {
+    if (window.aistudio?.openSelectKey) {
+      await window.aistudio.openSelectKey();
+      // Assume success after closing dialog as per instructions
+      setAppState(AppState.IDLE);
+    }
+  };
+
   const handleFileSelect = async (base64: string, mimeType: string) => {
+    // Double check key before processing
+    if (window.aistudio?.hasSelectedApiKey) {
+        const hasKey = await window.aistudio.hasSelectedApiKey();
+        if (!hasKey) {
+            setAppState(AppState.NO_API_KEY);
+            return;
+        }
+    }
+
     setAppState(AppState.PROCESSING);
     setErrorMsg(null);
     try {
@@ -303,8 +334,13 @@ export default function App() {
       setExtractedContent(content);
       setAppState(AppState.EDITING);
     } catch (err: any) {
-      setErrorMsg(err.message || "Algo salió mal.");
-      setAppState(AppState.ERROR);
+      // Check for specific API Key error message if possible, though strict error handling is better
+      if (err.message && (err.message.includes('API Key') || err.message.includes('403'))) {
+        setAppState(AppState.NO_API_KEY);
+      } else {
+        setErrorMsg(err.message || "Algo salió mal.");
+        setAppState(AppState.ERROR);
+      }
     }
   };
 
@@ -347,7 +383,7 @@ export default function App() {
             </div>
             <h1 className="text-xl font-bold tracking-tight text-slate-900">Encuestamano</h1>
           </div>
-          {appState !== AppState.IDLE && (
+          {appState !== AppState.IDLE && appState !== AppState.NO_API_KEY && (
             <button 
               onClick={handleReset}
               className="flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-brand-600 transition-colors"
@@ -361,6 +397,37 @@ export default function App() {
 
       <main className="flex-1 max-w-6xl mx-auto w-full p-4 lg:p-8 flex flex-col">
         
+        {/* API Key Missing State */}
+        {appState === AppState.NO_API_KEY && (
+          <div className="flex-1 flex items-center justify-center">
+             <div className="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full text-center border border-slate-200">
+                <div className="w-16 h-16 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Key className="w-8 h-8" />
+                </div>
+                <h2 className="text-2xl font-bold text-slate-900 mb-2">Configuración Requerida</h2>
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  Para utilizar Encuestamano, necesitas conectar tu API Key de Google. 
+                  <br />
+                  <a 
+                    href="https://ai.google.dev/gemini-api/docs/billing" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-brand-600 hover:underline text-sm"
+                  >
+                    Información sobre facturación
+                  </a>
+                </p>
+                <button 
+                  onClick={handleSelectKey}
+                  className="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                >
+                  <Key className="w-4 h-4" />
+                  Conectar API Key
+                </button>
+             </div>
+          </div>
+        )}
+
         {appState === AppState.ERROR && (
            <div className="max-w-xl mx-auto mb-8 bg-red-50 border border-red-200 rounded-xl p-4 flex items-start gap-3">
              <div className="text-red-500 mt-0.5">⚠️</div>

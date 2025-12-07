@@ -30,5 +30,6 @@ export enum AppState {
   IDLE = 'IDLE',
   PROCESSING = 'PROCESSING',
   EDITING = 'EDITING',
-  ERROR = 'ERROR'
+  ERROR = 'ERROR',
+  NO_API_KEY = 'NO_API_KEY'
 }
