@@ -1,0 +1,5 @@
+{
+  "name": "Encuestamano",
+  "description": "Transform handwritten notes, quizzes, and trivia into beautiful, shareable social media cards using Gemini AI.",
+  "requestFramePermissions": []
+}
