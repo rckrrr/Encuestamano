@@ -40,8 +40,8 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect, isLoading 
           {isLoading ? (
             <>
               <Loader2 className="w-12 h-12 mb-4 text-brand-500 animate-spin" />
-              <p className="mb-2 text-lg text-gray-500 font-medium">Analyzing handwriting...</p>
-              <p className="text-sm text-gray-400">Powered by Gemini 2.5 Flash</p>
+              <p className="mb-2 text-lg text-gray-500 font-medium">Analizando escritura...</p>
+              <p className="text-sm text-gray-400">Potenciado por Gemini 2.5 Flash</p>
             </>
           ) : (
             <>
@@ -54,13 +54,13 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect, isLoading 
                 </div>
               </div>
               <p className="mb-2 text-xl font-semibold text-gray-700">
-                Upload handwritten note
+                Sube tu nota manuscrita
               </p>
               <p className="mb-4 text-sm text-gray-500 max-w-xs">
-                Drag and drop or click to upload an image or PDF containing questions, quotes, or trivia.
+                Arrastra o haz clic para subir una imagen o PDF con preguntas, citas o trivias.
               </p>
               <div className="px-4 py-2 bg-brand-600 text-white rounded-full text-sm font-medium shadow-lg shadow-brand-200">
-                Select File
+                Seleccionar Archivo
               </div>
             </>
           )}

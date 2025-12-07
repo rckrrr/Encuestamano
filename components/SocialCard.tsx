@@ -113,7 +113,7 @@ export const SocialCard = forwardRef<HTMLDivElement, SocialCardProps>(({ content
               {/* Show answer for QA mode or if no options exist but answer exists */}
               {isQA && showCorrectAnswer && content.correctAnswer && (
                 <div className={`mt-6 p-4 rounded-xl bg-white/20 border border-white/30 backdrop-blur-sm animate-in fade-in slide-in-from-bottom-4`}>
-                   <p className={`text-xs uppercase tracking-widest font-bold mb-1 opacity-70 ${theme.textColorClass}`}>Answer</p>
+                   <p className={`text-xs uppercase tracking-widest font-bold mb-1 opacity-70 ${theme.textColorClass}`}>Respuesta</p>
                    <p className={`text-lg font-bold ${theme.textColorClass}`}>{content.correctAnswer}</p>
                 </div>
               )}

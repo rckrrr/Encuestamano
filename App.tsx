@@ -14,14 +14,15 @@ import {
   Check,
   Layout,
   Smartphone,
-  Square
+  Square,
+  PenTool
 } from 'lucide-react';
 
 const THEMES: ThemeConfig[] = [
   // 1. Sunset Vibes
   {
     id: 'sunset',
-    name: 'Sunset Vibes',
+    name: 'Atardecer',
     backgroundClass: 'bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600',
     cardBgClass: 'bg-black/20',
     textColorClass: 'text-white',
@@ -31,7 +32,7 @@ const THEMES: ThemeConfig[] = [
   // 2. Ocean
   {
     id: 'ocean',
-    name: 'Deep Ocean',
+    name: 'Océano Profundo',
     backgroundClass: 'bg-gradient-to-bl from-blue-600 via-teal-500 to-emerald-600',
     cardBgClass: 'bg-white/10',
     textColorClass: 'text-white',
@@ -41,7 +42,7 @@ const THEMES: ThemeConfig[] = [
   // 3. Modern Dark
   {
     id: 'modern-dark',
-    name: 'Modern Dark',
+    name: 'Oscuro Moderno',
     backgroundClass: 'bg-slate-900',
     cardBgClass: 'bg-slate-800/80',
     textColorClass: 'text-slate-100',
@@ -51,7 +52,7 @@ const THEMES: ThemeConfig[] = [
   // 4. Elegant
   {
     id: 'elegant',
-    name: 'Elegant',
+    name: 'Elegante',
     backgroundClass: 'bg-[#F5E6D3]', // Beige
     cardBgClass: 'bg-white/60',
     textColorClass: 'text-stone-800',
@@ -71,7 +72,7 @@ const THEMES: ThemeConfig[] = [
   // 6. Forest
   {
     id: 'forest',
-    name: 'Deep Forest',
+    name: 'Bosque',
     backgroundClass: 'bg-gradient-to-tr from-green-900 to-emerald-800',
     cardBgClass: 'bg-white/10 border-white/10',
     textColorClass: 'text-emerald-50',
@@ -91,7 +92,7 @@ const THEMES: ThemeConfig[] = [
   // 8. Luxury
   {
     id: 'luxury',
-    name: 'Luxury Gold',
+    name: 'Lujo Dorado',
     backgroundClass: 'bg-neutral-900',
     cardBgClass: 'bg-black/40 border border-yellow-600/40',
     textColorClass: 'text-yellow-50',
@@ -101,7 +102,7 @@ const THEMES: ThemeConfig[] = [
   // 9. Blueprint
   {
     id: 'blueprint',
-    name: 'Blueprint',
+    name: 'Plano Azul',
     backgroundClass: 'bg-blue-700',
     cardBgClass: 'bg-blue-600/50 border-2 border-white/30 border-dashed',
     textColorClass: 'text-white',
@@ -111,7 +112,7 @@ const THEMES: ThemeConfig[] = [
   // 10. Coffee
   {
     id: 'coffee',
-    name: 'Coffee Break',
+    name: 'Café',
     backgroundClass: 'bg-[#D7CCC8]',
     cardBgClass: 'bg-white shadow-lg',
     textColorClass: 'text-amber-900',
@@ -121,7 +122,7 @@ const THEMES: ThemeConfig[] = [
   // 11. Minimalist
   {
     id: 'minimalist',
-    name: 'Minimalist',
+    name: 'Minimalista',
     backgroundClass: 'bg-gray-100',
     cardBgClass: 'bg-white border border-gray-200',
     textColorClass: 'text-gray-900',
@@ -131,7 +132,7 @@ const THEMES: ThemeConfig[] = [
   // 12. Night Sky
   {
     id: 'night-sky',
-    name: 'Night Sky',
+    name: 'Cielo Nocturno',
     backgroundClass: 'bg-gradient-to-b from-indigo-950 via-purple-950 to-black',
     cardBgClass: 'bg-white/5 border border-white/10',
     textColorClass: 'text-indigo-100',
@@ -141,7 +142,7 @@ const THEMES: ThemeConfig[] = [
   // 13. Pastel Dream
   {
     id: 'pastel',
-    name: 'Pastel Dream',
+    name: 'Sueño Pastel',
     backgroundClass: 'bg-gradient-to-r from-pink-200 via-purple-200 to-indigo-200',
     cardBgClass: 'bg-white/70 backdrop-blur-xl',
     textColorClass: 'text-gray-700',
@@ -151,7 +152,7 @@ const THEMES: ThemeConfig[] = [
   // 14. Neon Nights
   {
     id: 'neon',
-    name: 'Neon Nights',
+    name: 'Neón',
     backgroundClass: 'bg-black',
     cardBgClass: 'bg-black border-2 border-green-400 shadow-[0_0_10px_rgba(74,222,128,0.5)]',
     textColorClass: 'text-green-400',
@@ -161,7 +162,7 @@ const THEMES: ThemeConfig[] = [
   // 15. Vintage Paper
   {
     id: 'vintage',
-    name: 'Vintage Paper',
+    name: 'Papel Vintage',
     backgroundClass: 'bg-[#f0e6d2]',
     cardBgClass: 'bg-[#fdfbf7] shadow-md border border-[#e8dcc5]',
     textColorClass: 'text-warm-gray-900',
@@ -171,7 +172,7 @@ const THEMES: ThemeConfig[] = [
   // 16. Ruby Red
   {
     id: 'ruby',
-    name: 'Ruby Red',
+    name: 'Rojo Rubí',
     backgroundClass: 'bg-gradient-to-br from-red-900 to-red-700',
     cardBgClass: 'bg-black/30 border-t border-red-500/30',
     textColorClass: 'text-red-50',
@@ -181,7 +182,7 @@ const THEMES: ThemeConfig[] = [
   // 17. Royal Purple
   {
     id: 'royal',
-    name: 'Royal Purple',
+    name: 'Púrpura Real',
     backgroundClass: 'bg-purple-900',
     cardBgClass: 'bg-indigo-950/80 border border-yellow-500/30',
     textColorClass: 'text-purple-50',
@@ -191,7 +192,7 @@ const THEMES: ThemeConfig[] = [
   // 18. Slate Orange
   {
     id: 'slate-orange',
-    name: 'Slate & Orange',
+    name: 'Pizarra y Naranja',
     backgroundClass: 'bg-slate-800',
     cardBgClass: 'bg-slate-700 border-l-4 border-orange-500',
     textColorClass: 'text-white',
@@ -201,7 +202,7 @@ const THEMES: ThemeConfig[] = [
   // 19. Minty
   {
     id: 'minty',
-    name: 'Minty Fresh',
+    name: 'Menta Fresca',
     backgroundClass: 'bg-emerald-100',
     cardBgClass: 'bg-white border-2 border-emerald-200',
     textColorClass: 'text-emerald-900',
@@ -211,7 +212,7 @@ const THEMES: ThemeConfig[] = [
   // 20. Monochrome
   {
     id: 'monochrome',
-    name: 'Monochrome',
+    name: 'Monocromo',
     backgroundClass: 'bg-white',
     cardBgClass: 'bg-black text-white',
     textColorClass: 'text-white',
@@ -231,7 +232,7 @@ const THEMES: ThemeConfig[] = [
   // 22. Bubblegum
   {
     id: 'bubblegum',
-    name: 'Bubblegum',
+    name: 'Chicle',
     backgroundClass: 'bg-pink-500',
     cardBgClass: 'bg-white/90 border-4 border-pink-300',
     textColorClass: 'text-pink-600',
@@ -251,7 +252,7 @@ const THEMES: ThemeConfig[] = [
   // 24. Abstract
   {
     id: 'abstract',
-    name: 'Abstract Art',
+    name: 'Arte Abstracto',
     backgroundClass: 'bg-gradient-to-r from-violet-600 to-indigo-600',
     cardBgClass: 'bg-white/10 backdrop-blur-md border border-white/20',
     textColorClass: 'text-white',
@@ -262,7 +263,7 @@ const THEMES: ThemeConfig[] = [
 
 const INITIAL_CONTENT: ExtractedContent = {
   type: ContentType.OTHER,
-  text: "Upload a file to get started!"
+  text: "¡Sube un archivo para comenzar!"
 };
 
 export default function App() {
@@ -302,7 +303,7 @@ export default function App() {
       setExtractedContent(content);
       setAppState(AppState.EDITING);
     } catch (err: any) {
-      setErrorMsg(err.message || "Something went wrong.");
+      setErrorMsg(err.message || "Algo salió mal.");
       setAppState(AppState.ERROR);
     }
   };
@@ -317,7 +318,7 @@ export default function App() {
         link.click();
       } catch (err) {
         console.error('Download failed', err);
-        setErrorMsg("Could not download image. Try taking a screenshot!");
+        setErrorMsg("No se pudo descargar la imagen. ¡Intenta hacer una captura de pantalla!");
       }
     }
   };
@@ -340,7 +341,10 @@ export default function App() {
       <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-tr from-brand-500 to-purple-500 rounded-lg shadow-sm"></div>
+            {/* Logo Personalizado */}
+            <div className="w-8 h-8 bg-gradient-to-tr from-brand-500 to-purple-600 rounded-lg shadow-sm flex items-center justify-center text-white">
+              <PenTool className="w-5 h-5" />
+            </div>
             <h1 className="text-xl font-bold tracking-tight text-slate-900">Encuestamano</h1>
           </div>
           {appState !== AppState.IDLE && (
@@ -349,7 +353,7 @@ export default function App() {
               className="flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-brand-600 transition-colors"
             >
               <RotateCcw className="w-4 h-4" />
-              Start Over
+              Reiniciar
             </button>
           )}
         </div>
@@ -361,13 +365,13 @@ export default function App() {
            <div className="max-w-xl mx-auto mb-8 bg-red-50 border border-red-200 rounded-xl p-4 flex items-start gap-3">
              <div className="text-red-500 mt-0.5">⚠️</div>
              <div>
-               <h3 className="text-sm font-bold text-red-800">Error Processing File</h3>
-               <p className="text-sm text-red-700">{errorMsg || "Unknown error occurred"}</p>
+               <h3 className="text-sm font-bold text-red-800">Error Procesando Archivo</h3>
+               <p className="text-sm text-red-700">{errorMsg || "Ocurrió un error desconocido"}</p>
                <button 
                 onClick={() => setAppState(AppState.IDLE)} 
                 className="mt-2 text-xs font-semibold text-red-800 underline"
                >
-                 Try Again
+                 Intentar de nuevo
                </button>
              </div>
            </div>
@@ -378,34 +382,34 @@ export default function App() {
           <div className="flex-1 flex flex-col items-center justify-center min-h-[60vh] animate-in fade-in zoom-in duration-500">
             <div className="text-center mb-8 max-w-2xl">
               <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
-                Turn Handwriting into <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-purple-600">Viral Posts</span>
+                Convierte tus Apuntes en <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-purple-600">Posts Virales</span>
               </h2>
               <p className="text-lg text-slate-600 mb-8">
-                Upload a photo of your study notes, trivia questions, or handwritten quotes. 
-                We'll digitize them into stunning social media cards instantly.
+                Sube una foto de tus notas de estudio, preguntas de trivia o citas escritas a mano.
+                Las digitalizaremos en impresionantes tarjetas para redes sociales al instante.
               </p>
 
               {/* Aspect Ratio Selector (Only visible when IDLE) */}
               {!isLoading(appState) && (
                 <div className="flex flex-col items-center gap-3 mb-6">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Select Format</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Formato</span>
                   <div className="flex bg-white p-1.5 rounded-2xl shadow-sm border border-slate-200">
                     <RatioButton 
-                      label="Square" 
+                      label="Cuadrado" 
                       value="square" 
                       current={selectedRatio} 
                       onClick={setSelectedRatio} 
                       icon={<Square className="w-4 h-4" />}
                     />
                     <RatioButton 
-                      label="Portrait" 
+                      label="Vertical" 
                       value="portrait" 
                       current={selectedRatio} 
                       onClick={setSelectedRatio} 
                       icon={<Layout className="w-4 h-4" />}
                     />
                     <RatioButton 
-                      label="Story" 
+                      label="Historia" 
                       value="story" 
                       current={selectedRatio} 
                       onClick={setSelectedRatio} 
@@ -433,16 +437,16 @@ export default function App() {
               {/* Content Editor */}
               <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
                 <div className="flex items-center gap-2 mb-4 text-slate-400 uppercase text-xs font-bold tracking-wider">
-                  <Edit2 className="w-4 h-4" /> Content Editor
+                  <Edit2 className="w-4 h-4" /> Editor de Contenido
                 </div>
 
                 <div className="space-y-4">
                   <div>
                     <div className="flex items-baseline justify-between mb-1">
                       <label className="block text-sm font-semibold text-slate-700">
-                        {extractedContent.type === ContentType.QUOTE ? 'Quote Text' : 'Question / Headline'}
+                        {extractedContent.type === ContentType.QUOTE ? 'Texto de la Cita' : 'Pregunta / Título'}
                       </label>
-                      <span className="text-xs text-slate-400 font-normal">One per line</span>
+                      <span className="text-xs text-slate-400 font-normal">Una por línea</span>
                     </div>
                     <textarea 
                       value={extractedContent.question || extractedContent.text || ''}
@@ -454,8 +458,8 @@ export default function App() {
                   {(extractedContent.type === ContentType.TRIVIA || extractedContent.options) && (
                     <div>
                       <div className="flex items-baseline justify-between mb-1">
-                        <label className="block text-sm font-semibold text-slate-700">Options</label>
-                        <span className="text-xs text-slate-400 font-normal">One per line</span>
+                        <label className="block text-sm font-semibold text-slate-700">Opciones</label>
+                        <span className="text-xs text-slate-400 font-normal">Una por línea</span>
                       </div>
                       <textarea 
                         value={extractedContent.options?.join('\n') || ''}
@@ -467,7 +471,7 @@ export default function App() {
 
                    <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-1">
-                      {extractedContent.type === ContentType.QUOTE ? 'Author' : 'Correct Answer'}
+                      {extractedContent.type === ContentType.QUOTE ? 'Autor' : 'Respuesta Correcta'}
                     </label>
                     <input 
                       type="text"
@@ -482,7 +486,7 @@ export default function App() {
               {/* Theme Selector */}
               <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
                 <div className="flex items-center gap-2 mb-4 text-slate-400 uppercase text-xs font-bold tracking-wider">
-                  <Palette className="w-4 h-4" /> Visual Style
+                  <Palette className="w-4 h-4" /> Estilo Visual
                 </div>
                 <div className="grid grid-cols-2 gap-3 max-h-96 overflow-y-auto pr-1 custom-scrollbar">
                   {THEMES.map(theme => (
@@ -527,7 +531,7 @@ export default function App() {
                     className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors"
                    >
                      {showAnswer ? <EyeOff className="w-4 h-4"/> : <Eye className="w-4 h-4"/>}
-                     {showAnswer ? 'Hide Answer' : 'Show Answer'}
+                     {showAnswer ? 'Ocultar' : 'Ver Respuesta'}
                    </button>
                 </div>
 
@@ -546,7 +550,7 @@ export default function App() {
                   className="w-full sm:w-auto px-8 py-4 bg-slate-900 text-white rounded-xl font-bold text-lg shadow-xl shadow-slate-900/20 hover:bg-slate-800 hover:-translate-y-1 transition-all flex items-center justify-center gap-3"
                 >
                   <Download className="w-5 h-5" />
-                  Download Image
+                  Descargar Imagen
                 </button>
               </div>
             </div>

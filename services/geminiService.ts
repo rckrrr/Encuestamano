@@ -5,20 +5,20 @@ export const extractContentFromImage = async (base64Data: string, mimeType: stri
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
   const prompt = `
-    Analyze this image or document which contains handwritten or printed text.
-    Your goal is to extract the content for a social media post.
+    Analiza esta imagen o documento que contiene texto manuscrito o impreso (probablemente en ESPAÑOL).
+    Tu objetivo es extraer el contenido para una publicación en redes sociales.
     
-    1. Identify the type of content:
-       - 'TRIVIA': A multiple choice question or quiz.
-       - 'QA': A simple question and answer pair.
-       - 'QUOTE': A quote, phrase, or saying.
-       - 'OTHER': General text.
+    1. Identifica el tipo de contenido:
+       - 'TRIVIA': Una pregunta de opción múltiple o quiz.
+       - 'QA': Una pregunta simple con su respuesta.
+       - 'QUOTE': Una cita, frase inspiradora o dicho.
+       - 'OTHER': Texto general.
        
-    2. Extract the text accurately, correcting any handwriting errors.
+    2. Extrae el texto con precisión, corrigiendo errores de escritura manual. ASUME QUE EL TEXTO ESTÁ EN ESPAÑOL a menos que sea claramente otro idioma.
 
-    3. CRITICAL FOR OPTIONS: If the options in the image are labeled (e.g., "A)", "B)", "C)", "1.", "a."), YOU MUST INCLUDE these labels in the extracted text strings for the options array. Do not strip them out. If no labels exist in the image, do not invent them.
+    3. CRÍTICO PARA OPCIONES: Si las opciones en la imagen tienen etiquetas (ej: "A)", "B)", "C)", "1.", "a."), DEBES INCLUIR estas etiquetas en las cadenas de texto extraídas para el array de opciones. No las elimines. Si no hay etiquetas en la imagen, no las inventes.
     
-    4. Return the data in the specified JSON structure.
+    4. Devuelve los datos estrictamente en la estructura JSON especificada.
   `;
 
   try {
@@ -45,32 +45,32 @@ export const extractContentFromImage = async (base64Data: string, mimeType: stri
             type: {
               type: Type.STRING,
               enum: [ContentType.TRIVIA, ContentType.QA, ContentType.QUOTE, ContentType.OTHER],
-              description: "The type of content detected."
+              description: "El tipo de contenido detectado."
             },
             question: {
               type: Type.STRING,
-              description: "The main question text or headline.",
+              description: "El texto principal de la pregunta o título.",
               nullable: true
             },
             options: {
               type: Type.ARRAY,
               items: { type: Type.STRING },
-              description: "List of options for multiple choice questions. Keep prefixes like 'A)' or '1.' if present.",
+              description: "Lista de opciones para preguntas de opción múltiple. Mantén prefijos como 'A)' o '1.' si existen.",
               nullable: true
             },
             correctAnswer: {
               type: Type.STRING,
-              description: "The correct answer if indicated (e.g., circled or marked).",
+              description: "La respuesta correcta si está indicada (ej: circulada o marcada).",
               nullable: true
             },
             text: {
               type: Type.STRING,
-              description: "The main body text for quotes or general notes.",
+              description: "El cuerpo del texto principal para citas o notas generales.",
               nullable: true
             },
             author: {
               type: Type.STRING,
-              description: "The author of the quote, if visible.",
+              description: "El autor de la cita, si es visible.",
               nullable: true
             }
           },
@@ -88,6 +88,6 @@ export const extractContentFromImage = async (base64Data: string, mimeType: stri
 
   } catch (error) {
     console.error("Gemini Extraction Error:", error);
-    throw new Error("Failed to extract content from the image.");
+    throw new Error("No se pudo extraer contenido de la imagen.");
   }
 };
